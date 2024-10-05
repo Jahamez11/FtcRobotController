@@ -133,6 +133,9 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
     private DcMotor         rightDrive  = null;
     private DcMotor ARM_EXTENSIONDcMotor;
     private DcMotor ARM_ROTATIONDcMotor;
+    private CRServo LEFT_GRABBER;
+    private CRServo RIGHT_GRABBER;
+
 
     private IMU             imu         = null;      // Control/Expansion Hub IMU
 
@@ -221,6 +224,10 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
         ARM_ROTATIONDcMotor = hardwareMap.get(DcMotor.class, "ARM_ROTATION");
         ARM_ROTATIONDcMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         ARM_ROTATIONDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LEFT_GRABBER = hardwareMap.get(CRServo.class, "LEFT_GRABBER");
+        RIGHT_GRABBER = hardwareMap.get(CRServo.class, "RIGHT_GRABBER");
+        LEFT_GRABBER.setPower(-1);
+        RIGHT_GRABBER.setPower(1);
 
 
 
@@ -737,35 +744,33 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
 
     private void left_pixel_place (){
         //Place code here
-        driveStraight(0.4,16,0);
+        driveStraight(0.4,17.5,0);
 //        driveStraight(0.5,24,90);
-        turnToHeading(TURN_SPEED,30);
-        if (TE_color)   driveStraight(DRIVE_SPEED,9.5,30);
-        else     driveStraight(DRIVE_SPEED,8.5,30);
-        holdHeading(TURN_SPEED,30,0.4);
-        driveStraight(DRIVE_SPEED,-9,30);
+        turnToHeading(TURN_SPEED,45);
+        holdHeading(TURN_SPEED,45,0.6);
+        extend_arm_release_pixel();
 //        holdHeading(DRIVE_SPEED,90,0.2);
 
     }
     private void  center_pixel_place (){
-        driveStraight(DRIVE_SPEED,28.5,0);
-        driveStraight(DRIVE_SPEED,-10,0);
+        driveStraight(DRIVE_SPEED,21,0);
+        turnToHeading(TURN_SPEED,-20);
+        holdHeading(TURN_SPEED,-20,0.6);
         extend_arm_release_pixel();
 //        turnToHeading(TURN_SPEED,-90);
     }
     private void right_pixel_place(){
         //Place code here
-        driveStraight(DRIVE_SPEED,5,0);
+        driveStraight(0.4,17.5,0);
 //        driveStraight(0.5,24,90);
-        turnToHeading(TURN_SPEED,40);
-        driveStraight(DRIVE_SPEED,5,40);
-        holdHeading(TURN_SPEED,40,0.4);
-        driveStraight(DRIVE_SPEED,-5,40);
+        turnToHeading(TURN_SPEED,-45);
+        holdHeading(TURN_SPEED,-45,0.6);
+        extend_arm_release_pixel();
 //        holdHeading(DRIVE_SPEED,90,0.2);
     }
     private void extend_arm_release_pixel(){
-        double armpwr = 0.1;
-        int distance = 5;
+        double armpwr = 0.2;
+        int distance = 5;//Don't go bigger than 8
         ARM_EXTENSIONDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         int moveCounts = (int)(distance * COUNTS_PER_INC_ARM);
         int newTarget = ARM_EXTENSIONDcMotor.getCurrentPosition()+moveCounts;
@@ -783,6 +788,8 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
         }
         ARM_EXTENSIONDcMotor.setPower(0);
         ARM_EXTENSIONDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LEFT_GRABBER.setPower(0.45);
+        RIGHT_GRABBER.setPower(-0.45);
 
     }
 

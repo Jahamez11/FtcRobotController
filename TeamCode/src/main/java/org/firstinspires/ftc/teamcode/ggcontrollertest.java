@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.fistinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -11,8 +11,8 @@ public class ggcontrollertest extends LinearOpMode {
 
     private static Object Servo;
     private CRServo PLANE_LAUNCHER;private CRServo lEFT_GRABBER;
-    private DcMotor LEFT_DRIVEAsDcMotor;
-    private DcMotor RIGHT_DRIVEAsDcMotor;
+    private DcMotor FRONTLEFTDRIVEAsDcMotor;
+    private DcMotor FRONTRIGHTDRIVEAsDcMotor;
     private DcMotor ARM_ROTATIONDcMotor;
     private DcMotor ARM_EXTENSIONDcMotor;
     private float PLANE_LAUNCHERServo;
@@ -39,17 +39,18 @@ public class ggcontrollertest extends LinearOpMode {
         float plane_launcher;
         long launch_time = System.currentTimeMillis();
         float left_grabber;
+        float Lateral;
 
-        LEFT_DRIVEAsDcMotor = hardwareMap.get(DcMotor.class, "LEFT_DRIVE");
-        RIGHT_DRIVEAsDcMotor = hardwareMap.get(DcMotor.class, "RIGHT_DRIVE");
+        FRONTLEFTDRIVEAsDcMotor = hardwareMap.get(DcMotor.class, "LEFT_DRIVE");
+        FRONTRIGHTDRIVEAsDcMotor = hardwareMap.get(DcMotor.class, "RIGHT_DRIVE");
         ARM_ROTATIONDcMotor = hardwareMap.get(DcMotor.class, "ARM_ROTATION");
         ARM_ROTATIONDcMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         ARM_ROTATIONDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         ARM_EXTENSIONDcMotor = hardwareMap.get(DcMotor.class, "ARM_EXTENSION");
         ARM_EXTENSIONDcMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         ARM_EXTENSIONDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LEFT_DRIVEAsDcMotor.setDirection(DcMotor.Direction.FORWARD);
-        RIGHT_DRIVEAsDcMotor.setDirection(DcMotor.Direction.REVERSE);
+        FRONTLEFTDRIVEAsDcMotor.setDirection(DcMotor.Direction.FORWARD);
+        FRONTRIGHTDRIVEAsDcMotor.setDirection(DcMotor.Direction.REVERSE);
         PLANE_LAUNCHER = hardwareMap.get(CRServo.class, "PLANE_LAUNCHER");
         LEFT_GRABBER = hardwareMap.get(CRServo.class, "LEFT_GRABBER");
         RIGHT_GRABBER = hardwareMap.get(CRServo.class,"RIGHT_GRABBER");
@@ -65,11 +66,12 @@ public class ggcontrollertest extends LinearOpMode {
                 // X = yaw. Y = axial//
                 Axial = gamepad1.left_stick_y;
                 Yaw = gamepad1.left_stick_x;
+                Lateral =  gamepad1.left_stick_x;
                 //Increase Speed based on trigger;
                 Speed_multiplier = gamepad1.right_trigger;
                 robot_speed = min_speed + ((1 - min_speed) * Speed_multiplier);
-                rightBackPower = Axial + Yaw;
-                leftBackPower = Axial - Yaw;
+                rightBackPower = Axial + Yaw + Lateral;
+                leftBackPower = Axial - Yaw - Lateral;
                 if (Math.abs(leftBackPower) > Math.abs(rightBackPower)) {
                     max = Math.abs(leftBackPower);
                 } else {
@@ -81,8 +83,8 @@ public class ggcontrollertest extends LinearOpMode {
                 }
                 leftBackPower *= robot_speed;
                 rightBackPower *= robot_speed;
-                LEFT_DRIVEAsDcMotor.setPower(leftBackPower);
-                RIGHT_DRIVEAsDcMotor.setPower(rightBackPower);
+                FRONTLEFTDRIVEAsDcMotor.setPower(leftBackPower);
+                FRONTRIGHTDRIVEAsDcMotor.setPower(rightBackPower);
                 ARM_ROTATIONDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 ARM_EXTENSIONDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 arm_extension_pwr = gamepad1.right_stick_y;
