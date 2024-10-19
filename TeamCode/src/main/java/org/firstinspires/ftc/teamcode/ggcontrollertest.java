@@ -20,7 +20,9 @@ public class ggcontrollertest extends LinearOpMode {
     private CRServo RIGHT_GRABBER;
 
     private static final double ARMMAXSPEED = 0.4;
-    private static final double ROTATIONMAXSPEED = 0.05;
+    private static
+
+    final double ROTATIONMAXSPEED = 0.05;
 
 
     // This function is executed when this Op Mode is selected from the Driver Station
@@ -105,12 +107,12 @@ public class ggcontrollertest extends LinearOpMode {
                     //Left Grab and Right grab
                 }
                 if(gamepad1.left_bumper) {
-                    LEFT_GRABBER.setPower(-0.05);
-                    RIGHT_GRABBER.setPower(0.05);
+                    LEFT_GRABBER.setPower(0.05);
+                    RIGHT_GRABBER.setPower(-0.05);
 
                 } else {
-                    LEFT_GRABBER.setPower(1);
-                    RIGHT_GRABBER.setPower(-1);
+                    LEFT_GRABBER.setPower(-1);
+                    RIGHT_GRABBER.setPower(1);
                 }
             }
         }
