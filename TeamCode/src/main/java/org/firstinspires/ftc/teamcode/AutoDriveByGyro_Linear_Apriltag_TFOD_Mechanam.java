@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -47,11 +48,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+//import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-import org.firstinspires.ftc.vision.tfod.TfodProcessor;
+//import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
@@ -104,7 +105,7 @@ import java.util.List;
  */
 
 @Autonomous(name="Auto Drive", group="TFOD")
-//@Disabled
+@Disabled
 public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode {
     private static final boolean DEBUG = true;
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
@@ -112,7 +113,7 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
      * The variable to store our instance of the AprilTag processor.
      */
     private AprilTagProcessor aprilTag;
-    private TfodProcessor tfod;
+    //private TfodProcessor tfod;
     private static final String TFOD_MODEL_ASSET = "taco_2023_TE.tflite";
     private static final String[] LABELS = {
             "blue_te","red_te"
@@ -201,9 +202,9 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
     public void runOpMode() {
 
 
-        initDoubleVision();
-        visionPortal.setProcessorEnabled(tfod, true);
-        visionPortal.setProcessorEnabled(aprilTag, false);
+//        initDoubleVision();
+//        visionPortal.setProcessorEnabled(tfod, true);
+//        visionPortal.setProcessorEnabled(aprilTag, false);
 
         //initAprilTag();
 
@@ -258,7 +259,7 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
 
         // Wait for the game to start (Display Gyro value while waiting)
         while (opModeInInit()) {
-            telemetryTfod();
+//            telemetryTfod();
             // Push telemetry to the Driver Station.
             telemetry.addData("Hub orientation", "Logo=%s   USB=%s\n ", logoDirection, usbDirection);
             telemetry.addData(">", "Robot Heading = %4.0f", getRawHeading());
@@ -279,11 +280,11 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
         resetHeading();
 
         for (int i = 0; i<10; i++) {
-            te_detector();
+            //te_detector();
             sleep(20);
         }
-        visionPortal.setProcessorEnabled(tfod, false);
-        visionPortal.setProcessorEnabled(aprilTag, true);
+//        visionPortal.setProcessorEnabled(tfod, false);
+//        visionPortal.setProcessorEnabled(aprilTag, true);
 
         switch (TE_location) {
             case 0://Left
@@ -579,121 +580,121 @@ public class AutoDriveByGyro_Linear_Apriltag_TFOD_Mechanam extends LinearOpMode 
         robotHeading = 0;
     }
 
-    private void initDoubleVision() {
-        // -----------------------------------------------------------------------------------------
-        // AprilTag Configuration
-        // -----------------------------------------------------------------------------------------
+//    private void initDoubleVision() {
+//        // -----------------------------------------------------------------------------------------
+//        // AprilTag Configuration
+//        // -----------------------------------------------------------------------------------------
+//
+//        aprilTag = new AprilTagProcessor.Builder()
+//                .build();
+//
+//        // -----------------------------------------------------------------------------------------
+//        // TFOD Configuration
+//        // -----------------------------------------------------------------------------------------
+//
+////        tfod = new TfodProcessor.Builder()
+////                .setModelAssetName(TFOD_MODEL_ASSET)
+////                .setModelLabels(LABELS)
+////                .setIsModelTensorFlow2(true)
+////                //.setIsModelQuantized(true)
+////                .setModelInputSize(300)
+////                .setModelAspectRatio(16.0 / 9.0)
+////                .build();
+//
+//        // -----------------------------------------------------------------------------------------
+//        // Camera Configuration
+//        // -----------------------------------------------------------------------------------------
+//
+//        if (USE_WEBCAM) {
+//            visionPortal = new VisionPortal.Builder()
+//                    .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
+//                    .addProcessors(tfod, aprilTag)
+//                    .build();
+//        } else {
+//            visionPortal = new VisionPortal.Builder()
+//                    .setCamera(BuiltinCameraDirection.BACK)
+//                    .addProcessors(tfod, aprilTag)
+//                    .build();
+//        }
+//    }   // end initDoubleVision()
 
-        aprilTag = new AprilTagProcessor.Builder()
-                .build();
+//    private void telemetryTfod() {
+//        float confidence = 80;
+//        String temp_label = "";
+//        String red_label = "red_te";
+//
+//
+//
+//        List<Recognition> currentRecognitions = tfod.getRecognitions();
+//        telemetry.addData("# Objects Detected", currentRecognitions.size());
+//
+//        // Step through the list of recognitions and display info for each one.
+//        for (Recognition recognition : currentRecognitions) {
+//            if (recognition.getConfidence()*100 > confidence  ) {
+//                double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
+//                double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
+//
+//                telemetry.addData(""," ");
+//                telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
+//                telemetry.addData("- Position", "%.0f / %.0f", x, y);
+//                telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
+//                temp_label = recognition.getLabel();
+//                telemetry.addData("Test:", "%s", temp_label);
+//                TE_color = (temp_label.equals(red_label));
+//                if (x < LEFT_TE_SIDE) {
+//                    TE_location = 0;  //Left
+//                    Te_position = "Left";
+//                } else if (x > RIGHT_TE_SIDE) {
+//                    TE_location = 2;  //Right
+//                    Te_position = "Right";
+//                } else {
+//                    TE_location = 1; //Center
+//                    Te_position = "Center";
+//                }
+//            }
+//
+//        }
+//        telemetry.addData(""," ");
+//        telemetry.addData("Image", "%s", (TE_color) ? "Red": "Blue");
+//        telemetry.addData("Position", "%s", Te_position);
+//
+//    }
 
-        // -----------------------------------------------------------------------------------------
-        // TFOD Configuration
-        // -----------------------------------------------------------------------------------------
-
-        tfod = new TfodProcessor.Builder()
-                .setModelAssetName(TFOD_MODEL_ASSET)
-                .setModelLabels(LABELS)
-                .setIsModelTensorFlow2(true)
-                //.setIsModelQuantized(true)
-                .setModelInputSize(300)
-                .setModelAspectRatio(16.0 / 9.0)
-                .build();
-
-        // -----------------------------------------------------------------------------------------
-        // Camera Configuration
-        // -----------------------------------------------------------------------------------------
-
-        if (USE_WEBCAM) {
-            visionPortal = new VisionPortal.Builder()
-                    .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
-                    .addProcessors(tfod, aprilTag)
-                    .build();
-        } else {
-            visionPortal = new VisionPortal.Builder()
-                    .setCamera(BuiltinCameraDirection.BACK)
-                    .addProcessors(tfod, aprilTag)
-                    .build();
-        }
-    }   // end initDoubleVision()
-
-    private void telemetryTfod() {
-        float confidence = 80;
-        String temp_label = "";
-        String red_label = "red_te";
-
-
-
-        List<Recognition> currentRecognitions = tfod.getRecognitions();
-        telemetry.addData("# Objects Detected", currentRecognitions.size());
-
-        // Step through the list of recognitions and display info for each one.
-        for (Recognition recognition : currentRecognitions) {
-            if (recognition.getConfidence()*100 > confidence  ) {
-                double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
-                double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
-
-                telemetry.addData(""," ");
-                telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
-                telemetry.addData("- Position", "%.0f / %.0f", x, y);
-                telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-                temp_label = recognition.getLabel();
-                telemetry.addData("Test:", "%s", temp_label);
-                TE_color = (temp_label.equals(red_label));
-                if (x < LEFT_TE_SIDE) {
-                    TE_location = 0;  //Left
-                    Te_position = "Left";
-                } else if (x > RIGHT_TE_SIDE) {
-                    TE_location = 2;  //Right
-                    Te_position = "Right";
-                } else {
-                    TE_location = 1; //Center
-                    Te_position = "Center";
-                }
-            }
-
-        }
-        telemetry.addData(""," ");
-        telemetry.addData("Image", "%s", (TE_color) ? "Red": "Blue");
-        telemetry.addData("Position", "%s", Te_position);
-
-    }
-
-    private void te_detector(){
-        float confidence = 80;
-        String red_label = "red_te";
-        String temp_label = "";
-
-//        sleep(500);
-        List<Recognition> currentRecognitions = tfod.getRecognitions();
-        telemetry.addData("# Objects Detected", currentRecognitions.size());
-        for (Recognition recognition : currentRecognitions) {
-            telemetry.addData("Confidence", "%.0f %% gt %.0f %%", recognition.getConfidence()*100,TE_confidence);
-            if (recognition.getConfidence()*100 > confidence  && TE_confidence < recognition.getConfidence()) {
-                TE_confidence = recognition.getConfidence();
-                double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
-                temp_label = recognition.getLabel();
-                telemetry.addData("Test:", "%s", temp_label);
-                TE_color = (temp_label.equals(red_label));
-                if (x < LEFT_TE_SIDE) {
-                    TE_location = 0;  //Left
-                    Te_position = "Left";
-                } else if (x > RIGHT_TE_SIDE) {
-                    TE_location = 2;  //Right
-                    Te_position = "Right";
-                } else {
-                    TE_location = 1; //Center
-                    Te_position = "Center";
-                }
-            }
-
-        }
-        telemetry.addData(""," ");
-        telemetry.addData("Image", "%s", (TE_color) ? "Red": "Blue");
-        telemetry.addData("Position", "%s", Te_position);
-        telemetry.update();
-
-    }
+//    private void te_detector(){
+//        float confidence = 80;
+//        String red_label = "red_te";
+//        String temp_label = "";
+//
+////        sleep(500);
+//        List<Recognition> currentRecognitions = tfod.getRecognitions();
+//        telemetry.addData("# Objects Detected", currentRecognitions.size());
+//        for (Recognition recognition : currentRecognitions) {
+//            telemetry.addData("Confidence", "%.0f %% gt %.0f %%", recognition.getConfidence()*100,TE_confidence);
+//            if (recognition.getConfidence()*100 > confidence  && TE_confidence < recognition.getConfidence()) {
+//                TE_confidence = recognition.getConfidence();
+//                double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
+//                temp_label = recognition.getLabel();
+//                telemetry.addData("Test:", "%s", temp_label);
+//                TE_color = (temp_label.equals(red_label));
+//                if (x < LEFT_TE_SIDE) {
+//                    TE_location = 0;  //Left
+//                    Te_position = "Left";
+//                } else if (x > RIGHT_TE_SIDE) {
+//                    TE_location = 2;  //Right
+//                    Te_position = "Right";
+//                } else {
+//                    TE_location = 1; //Center
+//                    Te_position = "Center";
+//                }
+//            }
+//
+//        }
+//        telemetry.addData(""," ");
+//        telemetry.addData("Image", "%s", (TE_color) ? "Red": "Blue");
+//        telemetry.addData("Position", "%s", Te_position);
+//        telemetry.update();
+//
+//    }
 
     /**
      * Add telemetry about AprilTag detections.

@@ -1,12 +1,14 @@
 package org.fistinspires.ftc.teamcode;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 @TeleOp(name = "ggcontrollertest.java", group = "LinearOpMode")
+@Disabled
 public class ggcontrollertest extends LinearOpMode {
 
     private static Object Servo;
