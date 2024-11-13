@@ -22,8 +22,6 @@ public class ttcontrollertest extends LinearOpMode {
     private static final double ROTATIONMAXSPEED = 1;
 
 
-
-
     // This function is executed when this Op Mode is selected from the Driver Station
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -45,6 +43,7 @@ public class ttcontrollertest extends LinearOpMode {
 
     private CRServo LIFT_SERVO2 = null;
     private TouchSensor rotate_zero = null;
+
     @Override
 
     public void runOpMode() {
@@ -61,8 +60,8 @@ public class ttcontrollertest extends LinearOpMode {
         ARM_ROTATION = hardwareMap.get(DcMotor.class, "ARMROTATION");
         LEFT_GRABBER = hardwareMap.get(CRServo.class, "LEFT_GRABBER");
         RIGHT_GRABBER = hardwareMap.get(CRServo.class, "RIGHT_GRABBER");
-        LIFT_SERVO1 = hardwareMap.get(CRServo.class, "LIFT_SERVO1");
-        LIFT_SERVO2 = hardwareMap.get(CRServo.class, "LIFT_SERVO2");
+        // LIFT_SERVO1 = hardwareMap.get(CRServo.class, "LIFT_SERVO1");
+        // LIFT_SERVO2 = hardwareMap.get(CRServo.class, "LIFT_SERVO2");
         rotate_zero = hardwareMap.get(TouchSensor.class, "ROTATE_0");
 
         ARM_EXTENSION.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -78,7 +77,6 @@ public class ttcontrollertest extends LinearOpMode {
         ARM_EXTENSION.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -86,7 +84,7 @@ public class ttcontrollertest extends LinearOpMode {
         runtime.reset();
         while (opModeIsActive()) {
             double arm_extension_pwr = -gamepad2.left_stick_y;
-            double arm_rotation_pwr = gamepad2.right_stick_y;
+            double arm_rotation_pwr = -gamepad2.right_stick_y;
             double max;
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
             double axial = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
@@ -137,11 +135,16 @@ public class ttcontrollertest extends LinearOpMode {
                 donothing = true;
                 arm_extension_pwr = 0;
             }
+            if (!rotate_zero.isPressed() && arm_rotation_pwr < 0) {
+                arm_rotation_pwr = 0;
+                telemetry.addData("Arm_rotation", "Less than 0");
+            }
 
 
-                telemetry.addData("ARM_EXTENSION_VALUE", arm_extension_pwr);
+            telemetry.addData("ARM_EXTENSION_VALUE", arm_extension_pwr);
             telemetry.addData("ARM_ROTATION_VALUE", arm_rotation_pwr);
             ARM_EXTENSION.setPower(arm_extension_pwr);
+            ARM_ROTATION.setPower(arm_rotation_pwr);
 
             if (gamepad2.left_bumper) {
                 LEFT_GRABBER.setPower(0.05);
@@ -150,28 +153,23 @@ public class ttcontrollertest extends LinearOpMode {
             } else {
                 LEFT_GRABBER.setPower(0.9);
                 RIGHT_GRABBER.setPower(-0.1);
-            }
-            telemetry.addData("Arm Position", ARM_EXTENSION.getCurrentPosition());
-            telemetry.addData("Arm Rotation Position", ARM_ROTATION.getCurrentPosition());
+
+                if (gamepad2.right_bumper) {
+                    LEFT_GRABBER.setPower(0.55);
+                    RIGHT_GRABBER.setPower(0.05);
+
+                } else {
+                    LEFT_GRABBER.setPower(0.9);
+                    RIGHT_GRABBER.setPower(-0.1);
+                }
+                telemetry.addData("Arm Position", ARM_EXTENSION.getCurrentPosition());
+                telemetry.addData("Arm Rotation Position", ARM_ROTATION.getCurrentPosition());
 
 
-            telemetry.addData("Ypower", arm_rotation_pwr);
-            if (rotate_zero.isPressed() && arm_rotation_pwr<0) {
-                arm_rotation_pwr = 0;
-                telemetry.addData("Arm_rotation", "Less than 0");
-            }
-            ARM_ROTATION.setPower(arm_rotation_pwr);
-            telemetry.update();
-            if (gamepad2.right_bumper) {
-                LIFT_SERVO1.setPower(1);
-                LIFT_SERVO2.setPower(1);
-
-            } else {
-                LIFT_SERVO1.setPower(-1);
-                LIFT_SERVO2.setPower(-1);
+                telemetry.addData("Ypower", arm_rotation_pwr);
+                telemetry.update();
             }
 
         }
     }
 }
-

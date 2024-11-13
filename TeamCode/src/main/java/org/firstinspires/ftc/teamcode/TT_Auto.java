@@ -1,9 +1,13 @@
-
 package org.firstinspires.ftc.teamcode;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+@Autonomous(name="TT_Auto", group="TFOD")
+//@Disabled
 public class TT_Auto extends LinearOpMode {
     private DcMotor FRONTLEFT_DRIVE = null;
 
@@ -20,39 +24,39 @@ public class TT_Auto extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-            FRONTLEFT_DRIVE = hardwareMap.get(DcMotor.class, "FRONTLEFT_DRIVE");
+        FRONTLEFT_DRIVE = hardwareMap.get(DcMotor.class, "FRONTLEFT_DRIVE");
 
-            FRONTRIGHT_DRIVE = hardwareMap.get(DcMotor.class, "FRONTRIGHT_DRIVE");
+        FRONTRIGHT_DRIVE = hardwareMap.get(DcMotor.class, "FRONTRIGHT_DRIVE");
 
-            BACKLEFT_DRIVE = hardwareMap.get(DcMotor.class, "BACKLEFT_DRIVE");
+        BACKLEFT_DRIVE = hardwareMap.get(DcMotor.class, "BACKLEFT_DRIVE");
 
-            BACKRIGHT_DRIVE = hardwareMap.get(DcMotor.class, "BACKRIGHT_DRIVE");
+        BACKRIGHT_DRIVE = hardwareMap.get(DcMotor.class, "BACKRIGHT_DRIVE");
 
-            ARM_EXTENSION = hardwareMap.get(DcMotor.class, "ARMEXTENSION");
-            ARM_ROTATION = hardwareMap.get(DcMotor.class, "ARMROTATION");
-            LEFT_GRABBER = hardwareMap.get(CRServo.class, "LEFT_GRABBER");
-            RIGHT_GRABBER = hardwareMap.get(CRServo.class, "RIGHT_GRABBER");
+        ARM_EXTENSION = hardwareMap.get(DcMotor.class, "ARMEXTENSION");
+        ARM_ROTATION = hardwareMap.get(DcMotor.class, "ARMROTATION");
+        LEFT_GRABBER = hardwareMap.get(CRServo.class, "LEFT_GRABBER");
+        RIGHT_GRABBER = hardwareMap.get(CRServo.class, "RIGHT_GRABBER");
 
 
-            ARM_EXTENSION.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            ARM_EXTENSION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            ARM_ROTATION.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            ARM_ROTATION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            FRONTLEFT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
-            BACKLEFT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
-            FRONTRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
-            BACKRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
-            // Put initialization blocks here
-            waitForStart();
-            // Put run blocks here
-            while (opModeIsActive()) {
-                // Put loop blocks here
-                FRONTLEFT_DRIVE.setPower(-1);
-                BACKLEFT_DRIVE.setPower(-1);
-                FRONTRIGHT_DRIVE.setPower(1);
-                BACKRIGHT_DRIVE.setPower(-1);
-                sleep(3000);
-                break;
-            }
+        ARM_EXTENSION.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ARM_EXTENSION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        ARM_ROTATION.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ARM_ROTATION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FRONTLEFT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
+        BACKLEFT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
+        FRONTRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
+        BACKRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
+        // Put initialization blocks here
+        waitForStart();
+        // Put run blocks here
+        while (opModeIsActive()) {
+            // Put loop blocks here
+            FRONTLEFT_DRIVE.setPower(1);
+            BACKLEFT_DRIVE.setPower(-1);
+            FRONTRIGHT_DRIVE.setPower(1);
+            BACKRIGHT_DRIVE.setPower(-1);
+            sleep(1320);
+            break;
         }
     }
+}
