@@ -72,8 +72,8 @@ public class ttcontrollertest extends LinearOpMode {
 
         FRONTLEFT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
         BACKLEFT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
-        FRONTRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
-        BACKRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
+        FRONTRIGHT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
+        BACKRIGHT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
         ARM_EXTENSION.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
@@ -116,10 +116,10 @@ public class ttcontrollertest extends LinearOpMode {
             }
 
 
-            FRONTRIGHT_DRIVE.setPower(rightFrontPower * 0.5);
-            FRONTLEFT_DRIVE.setPower(leftFrontPower * 0.5);
-            BACKRIGHT_DRIVE.setPower(rightBackPower * 0.5);
-            BACKLEFT_DRIVE.setPower(leftBackPower * 0.5);
+            FRONTRIGHT_DRIVE.setPower(rightFrontPower * 0.60);
+            FRONTLEFT_DRIVE.setPower(leftFrontPower * 0.60);
+            BACKRIGHT_DRIVE.setPower(rightBackPower * 0.60);
+            BACKLEFT_DRIVE.setPower(leftBackPower * 0.60);
 
             boolean donothing = false;
             telemetry.addData("Ypower", arm_extension_pwr);
@@ -135,6 +135,7 @@ public class ttcontrollertest extends LinearOpMode {
                 donothing = true;
                 arm_extension_pwr = 0;
             }
+            telemetry.addData("StopButton", !rotate_zero.isPressed());
             if (!rotate_zero.isPressed() && arm_rotation_pwr < 0) {
                 arm_rotation_pwr = 0;
                 telemetry.addData("Arm_rotation", "Less than 0");
@@ -143,24 +144,40 @@ public class ttcontrollertest extends LinearOpMode {
 
             telemetry.addData("ARM_EXTENSION_VALUE", arm_extension_pwr);
             telemetry.addData("ARM_ROTATION_VALUE", arm_rotation_pwr);
-            ARM_EXTENSION.setPower(arm_extension_pwr);
-            ARM_ROTATION.setPower(arm_rotation_pwr);
-
-            if (gamepad2.left_bumper) {
-                LEFT_GRABBER.setPower(0.05);
-                RIGHT_GRABBER.setPower(0.55);
-
+            if (gamepad2.a) {
+                ARM_EXTENSION.setTargetPosition(3900);
+                ARM_EXTENSION.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                ARM_EXTENSION.setPower(1);
             } else {
-                LEFT_GRABBER.setPower(0.9);
-                RIGHT_GRABBER.setPower(-0.1);
+                ARM_EXTENSION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                ARM_EXTENSION.setPower(arm_extension_pwr);
 
-                if (gamepad2.right_bumper) {
-                    LEFT_GRABBER.setPower(0.55);
-                    RIGHT_GRABBER.setPower(0.05);
-
+            } if (gamepad2.b) {
+                    ARM_ROTATION.setTargetPosition(-1400);
+                    ARM_ROTATION.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    ARM_ROTATION.setPower(1);
                 } else {
-                    LEFT_GRABBER.setPower(0.9);
-                    RIGHT_GRABBER.setPower(-0.1);
+                    ARM_ROTATION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                    ARM_ROTATION.setPower(arm_rotation_pwr);
+
+            }
+                }
+
+                if (gamepad2.left_bumper) {
+                    LEFT_GRABBER.setPower(0.05);
+                    RIGHT_GRABBER.setPower(0.55);
+                } else {
+                    LEFT_GRABBER.setPower(0.7);
+                    RIGHT_GRABBER.setPower(0.1);
+
+                    if (gamepad2.x) {
+                        LEFT_GRABBER.setPower(0.05);
+                        RIGHT_GRABBER.setPower(0.55);
+                    }
+                    if (gamepad2.y) {
+                        LEFT_GRABBER.setPower(0.9);
+                        RIGHT_GRABBER.setPower(-0.1);
+                    }
                 }
                 telemetry.addData("Arm Position", ARM_EXTENSION.getCurrentPosition());
                 telemetry.addData("Arm Rotation Position", ARM_ROTATION.getCurrentPosition());
@@ -168,8 +185,19 @@ public class ttcontrollertest extends LinearOpMode {
 
                 telemetry.addData("Ypower", arm_rotation_pwr);
                 telemetry.update();
-            }
 
+                if (gamepad1.right_bumper) {
+                    FRONTRIGHT_DRIVE.setPower(rightFrontPower * 0.25);
+                    FRONTLEFT_DRIVE.setPower(leftFrontPower * 0.25);
+                    BACKRIGHT_DRIVE.setPower(rightBackPower * 0.25);
+                    BACKLEFT_DRIVE.setPower(leftBackPower * 0.25);
+                } else {
+                    FRONTRIGHT_DRIVE.setPower(rightFrontPower * 0.60);
+                    FRONTLEFT_DRIVE.setPower(leftFrontPower * 0.60);
+                    BACKRIGHT_DRIVE.setPower(rightBackPower * 0.60);
+                    BACKLEFT_DRIVE.setPower(leftBackPower * 0.60);
+                }
+
+            }
         }
     }
-}

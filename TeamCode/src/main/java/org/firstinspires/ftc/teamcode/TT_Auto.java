@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Autonomous(name="TT_Auto", group="TFOD")
-//@Disabled
+@Disabled
 public class TT_Auto extends LinearOpMode {
     private DcMotor FRONTLEFT_DRIVE = null;
 
@@ -42,21 +42,13 @@ public class TT_Auto extends LinearOpMode {
         ARM_EXTENSION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         ARM_ROTATION.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         ARM_ROTATION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        FRONTLEFT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
+
+        FRONTLEFT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
         BACKLEFT_DRIVE.setDirection(DcMotor.Direction.REVERSE);
         FRONTRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
         BACKRIGHT_DRIVE.setDirection(DcMotor.Direction.FORWARD);
         // Put initialization blocks here
         waitForStart();
         // Put run blocks here
-        while (opModeIsActive()) {
-            // Put loop blocks here
-            FRONTLEFT_DRIVE.setPower(1);
-            BACKLEFT_DRIVE.setPower(-1);
-            FRONTRIGHT_DRIVE.setPower(1);
-            BACKRIGHT_DRIVE.setPower(-1);
-            sleep(1320);
-            break;
-        }
     }
 }
