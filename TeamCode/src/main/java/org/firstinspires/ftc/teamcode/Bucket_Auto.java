@@ -7,6 +7,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -27,10 +28,10 @@ import java.lang.invoke.WrongMethodTypeException;
  */
 
 @Autonomous(name="Bucket Autonomous", group = "AUTO")
-//@Disabled
+@Disabled
 public class Bucket_Auto extends LinearOpMode {
     // get an instance of the "Robot" class.
-    private SimplifiedOdometryRobot robot = new SimplifiedOdometryRobot(this);
+   // private SimplifiedOdometryRobot robot =new  SimplifiedOdometryRobot(this);
     private DcMotor ARM_ROTATION = null;
     private DcMotor ARM_EXTENSION = null;
     private CRServo LEFT_GRABBER = null;
@@ -46,14 +47,14 @@ public class Bucket_Auto extends LinearOpMode {
     public void runOpMode() {
 
         // Initialize the robot hardware & Turn on telemetry
-        robot.initialize(true);
+       // robot.initialize(true);
 
         // Wait for driver to press start
         telemetry.addData(">", "Touch Play to run Auto");
         telemetry.update();
 
         waitForStart();
-        robot.resetHeading();  // Reset heading to set a baseline for Auto
+      //  robot.resetHeading();  // Reset heading to set a baseline for Auto
 
         // Run Auto if stop was not pressed.
         if (opModeIsActive()) {
@@ -72,14 +73,14 @@ public class Bucket_Auto extends LinearOpMode {
             ARM_ROTATION.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             // Initialize the robot hardware & Turn on telemetry
-            robot.initialize(true);
+           // robot.initialize(true);
 
             // Wait for driver to press start
             telemetry.addData(">", "Touch Play to run Auto");
             telemetry.update();
 
             waitForStart();
-            robot.resetHeading();  // Reset heading to set a baseline for Auto
+            //robot.resetHeading();  // Reset heading to set a baseline for Auto
 
             // Run Auto if stop was not pressed.
                 // Note, this example takes more than 30 seconds to execute, so turn OFF the auto timer.
@@ -99,8 +100,8 @@ public class Bucket_Auto extends LinearOpMode {
                 ARM_ROTATION.setTargetPosition(1300);
                 ARM_ROTATION.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ARM_ROTATION.setPower(1);
-                robot.drive(5, 0.21, 0.15);
-                robot.strafe(9, 0.40, 0.15);
+              //  robot.drive(5, 0.21, 0.15);
+              //  robot.strafe(9, 0.40, 0.15);
                 LEFT_GRABBER.setPower(left_servo_open);
                 RIGHT_GRABBER.setPower(right_servo_open);
                 while (ARM_ROTATION.getCurrentPosition()<ARM_ROTATION.getTargetPosition()) {
@@ -112,7 +113,7 @@ public class Bucket_Auto extends LinearOpMode {
                 while(ARM_EXTENSION.getCurrentPosition()<=ARM_EXTENSION.getTargetPosition()){
                     ARM_EXTENSION.setPower(1);
                 }
-                robot.drive(3.5, 0.60, 0.15);
+              //  robot.drive(3.5, 0.60, 0.15);
 
                 LEFT_GRABBER.setPower(left_servo_close);
                 RIGHT_GRABBER.setPower(right_servo_close);
@@ -143,23 +144,23 @@ public class Bucket_Auto extends LinearOpMode {
                 }
                 ARM_ROTATION.setPower(0);
                 ARM_ROTATION.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                robot.turnTo(-45, 0.4, 0.1);
-                robot.strafe(6, 0.80, 0.1);
-                robot.drive(-11.5,0.6,0.1);
+              //  robot.turnTo(-45, 0.4, 0.1);
+               // robot.strafe(6, 0.80, 0.1);
+               // robot.drive(-11.5,0.6,0.1);
                 LEFT_GRABBER.setPower(left_servo_open);
                 RIGHT_GRABBER.setPower(right_servo_open);
-                robot.drive(-0.5,0.6,0.2);
+               // robot.drive(-0.5,0.6,0.2);
                 ARM_ROTATION.setTargetPosition(4500);
                 ARM_ROTATION.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ARM_ROTATION.setPower(1);
                 ARM_EXTENSION.setTargetPosition(800);
                 ARM_EXTENSION.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 ARM_EXTENSION.setPower(-1);
-                robot.drive(30,0.9,0.15);
+               // robot.drive(30,0.9,0.15);
                 ARM_EXTENSION.setPower(0);
-                robot.turnTo(-90, 0.4, 0.15);
-                robot.strafe(36, 0.90, 0.15);
-                robot.drive(16,0.9,0.15);
+              //  robot.turnTo(-90, 0.4, 0.15);
+               // robot.strafe(36, 0.90, 0.15);
+               // robot.drive(16,0.9,0.15);
 
 
         }

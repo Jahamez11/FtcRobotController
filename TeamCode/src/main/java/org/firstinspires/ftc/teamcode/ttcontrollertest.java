@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,10 +11,11 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.SensorTouch;
+//import org.firstinspires.ftc.robotcontroller.external.samples.SensorTouch;
 import org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence;
 
 @TeleOp(name = "ttcontrollertest.java", group = "LinearOpMode")
+@Disabled
 public class ttcontrollertest extends LinearOpMode {
 
     private static Object Servo;
@@ -161,7 +163,6 @@ public class ttcontrollertest extends LinearOpMode {
                     ARM_ROTATION.setPower(arm_rotation_pwr);
 
             }
-                }
 
                 if (gamepad2.left_bumper) {
                     LEFT_GRABBER.setPower(0.05);
@@ -186,7 +187,7 @@ public class ttcontrollertest extends LinearOpMode {
                 telemetry.addData("Ypower", arm_rotation_pwr);
                 telemetry.update();
 
-                if (gamepad1.right_bumper) {
+        if (gamepad1.right_bumper) {
                     FRONTRIGHT_DRIVE.setPower(rightFrontPower * 0.25);
                     FRONTLEFT_DRIVE.setPower(leftFrontPower * 0.25);
                     BACKRIGHT_DRIVE.setPower(rightBackPower * 0.25);
@@ -201,3 +202,4 @@ public class ttcontrollertest extends LinearOpMode {
             }
         }
     }
+

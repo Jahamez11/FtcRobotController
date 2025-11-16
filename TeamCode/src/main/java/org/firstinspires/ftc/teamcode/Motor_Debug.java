@@ -30,9 +30,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -66,7 +67,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @TeleOp(name="Motor Debug", group="Development")
-@Disabled
+//@Disabled
 public class Motor_Debug extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
@@ -77,6 +78,15 @@ public class Motor_Debug extends LinearOpMode {
     private DcMotor rightBackDrive = null;
     private double MINDRIVEPWR = 0.3;
 
+//    private DcMotor Arm_motor = null;
+//
+//    private DcMotor Slide_motor = null;
+//
+//    private DcMotor Pulley_motor = null;
+//
+//    private CRServo Dumpy_servo = null;
+//
+//    private CRServo intake_servo = null;
 
     public double setPosition(double desiredPos, double curPos, double proportional){
         double output = (desiredPos - curPos) * proportional;
@@ -91,10 +101,15 @@ public class Motor_Debug extends LinearOpMode {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        leftFrontDrive = hardwareMap.get(DcMotor.class, "FRONTLEFT_DRIVE");
-        leftBackDrive = hardwareMap.get(DcMotor.class, "BACKLEFT_DRIVE");
-        rightFrontDrive = hardwareMap.get(DcMotor.class, "FRONTRIGHT_DRIVE");
-        rightBackDrive = hardwareMap.get(DcMotor.class, "BACKRIGHT_DRIVE");
+        leftFrontDrive = hardwareMap.get(DcMotor.class, "LeftFront");
+        leftBackDrive = hardwareMap.get(DcMotor.class, "LeftBack");
+        rightFrontDrive = hardwareMap.get(DcMotor.class, "RightFront");
+        rightBackDrive = hardwareMap.get(DcMotor.class, "RightBack");
+//        Arm_motor = hardwareMap.get(DcMotor.class, "Arm_motor");
+//        Slide_motor = hardwareMap.get(DcMotor.class, "Slide_motor");
+//        Dumpy_servo = hardwareMap.get(CRServo.class, "Dumpy_servo");
+//        intake_servo = hardwareMap.get(CRServo.class, "intake_servo");
+//        Pulley_motor = hardwareMap.get(DcMotor.class, "Pulley_motor");
 
         // ########################################################################################
         // !!!            IMPORTANT Drive Information. Test your motor directions.            !!!!!
@@ -107,7 +122,7 @@ public class Motor_Debug extends LinearOpMode {
         // Reverse the direction (flip FORWARD <-> REVERSE ) of any wheel that runs backward
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
         leftFrontDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -122,7 +137,15 @@ public class Motor_Debug extends LinearOpMode {
         rightBackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBackDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        ;
+//        Arm_motor.setDirection(DcMotor.Direction.REVERSE);
+//        Arm_motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        Arm_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        Arm_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        Slide_motor.setDirection(DcMotorSimple.Direction.REVERSE);
+//        Slide_motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        Slide_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        Slide_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        ;
 
 
         // Wait for the game to start (driver presses START)
@@ -230,6 +253,12 @@ public class Motor_Debug extends LinearOpMode {
             }*/
 
 
+//            Arm_motor.setPower(0);
+//
+//            Dumpy_servo.setPower(0);
+//
+//
+//            Slide_motor.setPower(0);
 
             /*if (gamepad2.y) {
                 //Slide_motor.setTargetPosition(3000);

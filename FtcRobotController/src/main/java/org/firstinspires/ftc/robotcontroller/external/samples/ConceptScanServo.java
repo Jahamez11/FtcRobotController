@@ -42,6 +42,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  *
  * This code assumes a Servo configured with the name "left_hand" as is found on a Robot.
  *
+ *
  * NOTE: When any servo position is set, ALL attached servos are activated, so ensure that any other
  * connected servos are able to move freely before running this test.
  *

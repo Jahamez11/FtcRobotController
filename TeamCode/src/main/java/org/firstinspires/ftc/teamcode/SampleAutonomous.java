@@ -31,7 +31,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 @Disabled
 public class SampleAutonomous extends LinearOpMode {
     // get an instance of the "Robot" class.
-    private SimplifiedOdometryRobot robot = new SimplifiedOdometryRobot(this);
+   // private SimplifiedOdometryRobot robot = new SimplifiedOdometryRobot(this);
     private DcMotor Linear_up = null;
     private DcMotor Linear_Forward = null;
     private CRServo Servo_bucket;
@@ -49,14 +49,14 @@ public class SampleAutonomous extends LinearOpMode {
     public void runOpMode() {
 
         // Initialize the robot hardware & Turn on telemetry
-        robot.initialize(true);
+     //   robot.initialize(true);
 
         // Wait for driver to press start
         telemetry.addData(">", "Touch Play to run Auto");
         telemetry.update();
 
         waitForStart();
-        robot.resetHeading();  // Reset heading to set a baseline for Auto
+      //  robot.resetHeading();  // Reset heading to set a baseline for Auto
 
         // Run Auto if stop was not pressed.
         if (opModeIsActive()) {
@@ -78,14 +78,14 @@ public class SampleAutonomous extends LinearOpMode {
             //servo_arm_1.setPosition(intake_pos_high);
 
             // Initialize the robot hardware & Turn on telemetry
-            robot.initialize(true);
+        //    robot.initialize(true);
 
             // Wait for driver to press start
             telemetry.addData(">", "Touch Play to run Auto");
             telemetry.update();
 
             waitForStart();
-            robot.resetHeading();  // Reset heading to set a baseline for Auto
+          //  robot.resetHeading();  // Reset heading to set a baseline for Auto
 
             // Run Auto if stop was not pressed.
                 // Note, this example takes more than 30 seconds to execute, so turn OFF the auto timer.
@@ -106,8 +106,8 @@ public class SampleAutonomous extends LinearOpMode {
                 //robot.strafe( -48, 0.60, 0.15);
                 //robot.drive( -4, 0.60, 0.15);
 
-                robot.drive(6, 0.20, 0.15);
-                robot.strafe(48, 0.20, 0.15);
+             //   robot.drive(6, 0.20, 0.15);
+             //   robot.strafe(48, 0.20, 0.15);
 
                 //Linear_Forward.setPower(0.75);
 
