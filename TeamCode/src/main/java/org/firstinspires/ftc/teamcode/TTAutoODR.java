@@ -35,7 +35,7 @@ public class TTAutoODR extends LinearOpMode {
     rotate = hardwareMap.get(CRServo.class, "rotate");
     rotate2 = hardwareMap.get(CRServo.class, "rotate2");
 
-    odometry = new SimplifiedOdometryRobotCustom(this, index, rightlaunch);
+    odometry = new SimplifiedOdometryRobotCustom(this, backleft, frontleft);
 
     backright.setDirection(DcMotorSimple.Direction.FORWARD);
     backleft.setDirection(DcMotorSimple.Direction.REVERSE);

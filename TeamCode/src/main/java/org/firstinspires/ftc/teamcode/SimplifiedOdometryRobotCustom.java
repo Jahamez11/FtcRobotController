@@ -80,7 +80,6 @@ public class SimplifiedOdometryRobotCustom {
     private double turnRate           = 0; // Latest Robot Turn Rate from IMU
     private boolean showTelemetry     = true;
 
-
     // Robot Constructor
 
     public SimplifiedOdometryRobotCustom(LinearOpMode opmode, DcMotor driveEncoderMotor, DcMotor strafeEncoderMotor) {

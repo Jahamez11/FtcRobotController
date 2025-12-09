@@ -62,7 +62,7 @@ public class TTAutoOD extends LinearOpMode {
 
         // Step 3: Rotate counterclockwise to collection angle
         rotateRelative(TTAutoConstants.ROTATE_TO_COLLECT, TTAutoConstants.ROTATE_POWER);
-
+      sleep(10);
         // Step 4: Strafe left to ball group
         odometry.strafe(-strafeDistance, TTAutoConstants.DRIVE_POWER, 0);
 
