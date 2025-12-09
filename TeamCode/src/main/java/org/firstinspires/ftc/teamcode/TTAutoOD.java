@@ -59,9 +59,13 @@ public class TTAutoOD extends LinearOpMode {
       // Loop through 3 ball groups with different strafe distances
       for (int i = 0; i < TTAutoConstants.STRAFE_DISTANCES.length; i++) {
         double strafeDistance = TTAutoConstants.STRAFE_DISTANCES[i];
+        
+        // Store the collection rotation angle to reverse it later
+        double collectRotation = TTAutoConstants.ROTATE_TO_COLLECT;
 
         // Step 3: Rotate counterclockwise to collection angle
-        rotateRelative(TTAutoConstants.ROTATE_TO_COLLECT, TTAutoConstants.ROTATE_POWER);
+        rotateRelative(collectRotation, TTAutoConstants.ROTATE_POWER);
+        sleep(500);  // Pause after rotation to stabilize
 
         // Step 4: Strafe left to ball group
         odometry.strafe(-strafeDistance, TTAutoConstants.DRIVE_POWER, 0);
@@ -75,8 +79,8 @@ public class TTAutoOD extends LinearOpMode {
         // Step 7: Strafe right (return to shooting position)
         odometry.strafe(strafeDistance, TTAutoConstants.DRIVE_POWER, 0);
 
-        // Step 8: Rotate clockwise to shooting angle
-        rotateRelative(TTAutoConstants.ROTATE_TO_SHOOT, TTAutoConstants.ROTATE_POWER);
+        // Step 8: Rotate clockwise to shooting angle (reverse of collection rotation)
+        rotateRelative(-collectRotation, TTAutoConstants.ROTATE_POWER);
 
         // Step 9: Shoot collected balls
         shootBalls();

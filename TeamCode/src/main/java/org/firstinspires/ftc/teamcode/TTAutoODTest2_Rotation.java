@@ -57,24 +57,27 @@ public class TTAutoODTest2_Rotation extends LinearOpMode {
         // Initialize odometry at starting heading
         odometry.initialize(true);
         while (opModeIsActive()) {
+            // Store the collection rotation angle to reverse it later
+            double collectRotation = TTAutoConstants.ROTATE_TO_COLLECT;
+            
             double startHeading = odometry.getHeading();
             telemetry.addData("Start Heading", "%.1f degrees", startHeading);
             telemetry.update();
             sleep(2000);
 
             // Test: Rotate counterclockwise
-            telemetry.addData("Status", "Rotating CCW " + Math.abs(TTAutoConstants.ROTATE_TO_COLLECT) + "°...");
+            telemetry.addData("Status", "Rotating CCW " + Math.abs(collectRotation) + "°...");
             telemetry.update();
-            rotateRelative(TTAutoConstants.ROTATE_TO_COLLECT, TTAutoConstants.ROTATE_POWER);
+            rotateRelative(collectRotation, TTAutoConstants.ROTATE_POWER);
             double afterCCW = odometry.getHeading();
             telemetry.addData("After CCW", "%.1f degrees", afterCCW);
             telemetry.update();
             sleep(3000);
 
-            // Test: Rotate clockwise (should return close to start)
-            telemetry.addData("Status", "Rotating CW " + TTAutoConstants.ROTATE_TO_SHOOT + "°...");
+            // Test: Rotate clockwise (should return close to start) - reverse of collection rotation
+            telemetry.addData("Status", "Rotating CW " + (-collectRotation) + "°...");
             telemetry.update();
-            rotateRelative(TTAutoConstants.ROTATE_TO_SHOOT, TTAutoConstants.ROTATE_POWER);
+            rotateRelative(-collectRotation, TTAutoConstants.ROTATE_POWER);
             double finalHeading = odometry.getHeading();
             telemetry.addData("Final Heading", "%.1f degrees", finalHeading);
             telemetry.addData("Drift", "%.1f degrees", Math.abs(finalHeading - startHeading));
