@@ -64,7 +64,6 @@ public class TTAutoODTest1_Backup extends LinearOpMode {
             odometry.drive(-TTAutoConstants.BACKUP_TO_SHOOT, TTAutoConstants.DRIVE_POWER, 0);
             telemetry.addData("Status", "Backup complete!");
             telemetry.addData("Final Position", "%.2f inches", odometry.driveDistance);
-            telemetry.addData("Final Heading", "%.1f degrees", odometry.getHeading());
             telemetry.update();
 
             // Wait so user can verify position

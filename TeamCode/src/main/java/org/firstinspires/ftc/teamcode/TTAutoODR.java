@@ -58,7 +58,7 @@ public class TTAutoODR extends LinearOpMode {
       backright.setPower(0);
       sleep(10);
 
-
+      telemetry.addData("Start Heading", "%.1f degrees", odometry.driveDistance);
 
       // Loop through 3 ball groups with different strafe distances
 

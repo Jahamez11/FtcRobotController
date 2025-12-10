@@ -307,6 +307,7 @@ public class SimplifiedOdometryRobotCustom {
         if (showTelemetry) {
             myOpMode.telemetry.addData("Axes D:S:Y", "%5.2f %5.2f %5.2f", drive, strafe, yaw);
             myOpMode.telemetry.addData("Wheels lf:rf:lb:rb", "%5.2f %5.2f %5.2f %5.2f", lF, rF, lB, rB);
+            readSensors();
             myOpMode.telemetry.update(); //  Assume this is the last thing done in the loop.
         }
     }
