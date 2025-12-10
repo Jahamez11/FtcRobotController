@@ -11,7 +11,7 @@ public class TTAutoConstants {
     // ==================== MOVEMENT DISTANCES ====================
 
     /** Distance to back up from starting position to shooting position (inches) */
-    public static final double BACKUP_TO_SHOOT = 40.0;
+    public static final double BACKUP_TO_SHOOT = 32.0;
 
     /** Distance to drive forward to collect balls (inches) */
     public static final double DRIVE_TO_COLLECT = -32.0; // this may need to be negative

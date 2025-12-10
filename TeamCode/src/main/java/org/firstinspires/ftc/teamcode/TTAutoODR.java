@@ -35,7 +35,7 @@ public class TTAutoODR extends LinearOpMode {
     rotate = hardwareMap.get(CRServo.class, "rotate");
     rotate2 = hardwareMap.get(CRServo.class, "rotate2");
 
-    odometry = new SimplifiedOdometryRobotCustom(this, backleft, frontleft);
+    odometry = new SimplifiedOdometryRobotCustom(this, index, rightlaunch);
 
     backright.setDirection(DcMotorSimple.Direction.FORWARD);
     backleft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -67,10 +67,11 @@ public class TTAutoODR extends LinearOpMode {
 
       // Step 4: Strafe left to ball group
       odometry.strafe(-TTAutoConstants.STRAFE_GROUP_1, TTAutoConstants.DRIVE_POWER, 0);
-
+      sleep(200);
       // Step 5: Drive forward while collecting balls
       pickupBalls();
       driveAndCollect(TTAutoConstants.COLLECT_GROUP_1, TTAutoConstants.DRIVE_POWER_COLLECT);
+      sleep(1000);
       // Step 6: Back up to shooting lane
       odometry.drive(-TTAutoConstants.COLLECT_GROUP_1, TTAutoConstants.DRIVE_POWER, 0);
       // Step 7: Strafe right (return to shooting position)
