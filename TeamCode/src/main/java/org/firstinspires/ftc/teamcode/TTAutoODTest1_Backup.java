@@ -39,7 +39,9 @@ public class TTAutoODTest1_Backup extends LinearOpMode {
         rotate = hardwareMap.get(CRServo.class, "rotate");
         rotate2 = hardwareMap.get(CRServo.class, "rotate2");
 
-        odometry = new SimplifiedOdometryRobotCustom(this, index,rightlaunch);
+//        odometry = new SimplifiedOdometryRobotCustom(this, index,rightlaunch);
+        odometry = new SimplifiedOdometryRobotCustom(this, backleft, frontleft);
+
 
         // Set motor directions
         backright.setDirection(DcMotorSimple.Direction.FORWARD);

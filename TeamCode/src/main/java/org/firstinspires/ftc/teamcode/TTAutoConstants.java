@@ -14,10 +14,10 @@ public class TTAutoConstants {
     public static final double BACKUP_TO_SHOOT = 32.0;
 
     /** Distance to drive forward to collect balls (inches) */
-    public static final double DRIVE_TO_COLLECT = -32.0; // this may need to be negative
+    public static final double DRIVE_TO_COLLECT = -16.0; // this may need to be negative
 
     /** Strafe distance for first ball group (inches) */
-    public static final double STRAFE_GROUP_1 = -3;
+    public static final double STRAFE_GROUP_1 = -12;
 
     /** Strafe distance for second ball group (inches) */
     public static final double STRAFE_GROUP_2 = -3.4;
@@ -33,9 +33,9 @@ public class TTAutoConstants {
             STRAFE_GROUP_3
     };
     public static final double STRAFE_LEAVE = -3;
-    public static final double COLLECT_GROUP_1 = -32;
-    public static final double COLLECT_GROUP_2 = -38.4;
-    public static final double COLLECT_GROUP_3 = -38;
+    public static final double COLLECT_GROUP_1 = -16;
+    public static final double COLLECT_GROUP_2 = -16;
+    public static final double COLLECT_GROUP_3 = -16;
     public static final double[] COLLECT_DISTANCES = {
             COLLECT_GROUP_1,
             COLLECT_GROUP_2,
@@ -47,12 +47,12 @@ public class TTAutoConstants {
     public static final double START_HEADING = 45.0;
 
     /** Rotation angle before collecting balls - counterclockwise (degrees) */
-    public static final double ROTATE_TO_COLLECT = 121.0;
+    public static final double ROTATE_TO_COLLECT = 131;//121.0;
     //public static final double ROTATE_TO_COLLECT2 = 132.0;
 
 
     /** Rotation angle after collecting balls - clockwise (degrees) */
-    public static final double ROTATE_TO_SHOOT = -135.0;
+    public static final double ROTATE_TO_SHOOT = -131;//-135.0;
     public static final double ROTATE_TO_SHOOT2 = -143.0;
 
     public static final double ROTATE_TO_LEAVE = -45.0;
@@ -60,11 +60,11 @@ public class TTAutoConstants {
     // ==================== MOTOR POWERS ====================
 
     /** Drive motor power during autonomous movements (0.0 to 1.0) */
-    public static final double DRIVE_POWER = 0.25;
-    public static final double DRIVE_POWER_COLLECT = 0.5;
+    public static final double DRIVE_POWER = 1.0;//0.25;
+    public static final double DRIVE_POWER_COLLECT = 1.0;
 
     /** Rotation power during turns (0.0 to 1.0) */
-    public static final double ROTATE_POWER = 0.3;
+    public static final double ROTATE_POWER = 1.0;
 
     /** Left launcher motor power during shooting */
     public static final double LEFT_LAUNCH_POWER = 0.82;
@@ -98,7 +98,7 @@ public class TTAutoConstants {
     // ==================== TOLERANCE VALUES ====================
 
     /** Rotation tolerance for odometry turnTo command (degrees) */
-    public static final double ROTATION_TOLERANCE = 2.0;
+    public static final double ROTATION_TOLERANCE = 0.5;//2.0;
 
     // Private constructor prevents instantiation
     private TTAutoConstants() {
