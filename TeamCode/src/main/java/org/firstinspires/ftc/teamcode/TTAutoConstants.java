@@ -64,7 +64,7 @@ public class TTAutoConstants {
     public static final double DRIVE_POWER_COLLECT = 0.5;
 
     /** Rotation power during turns (0.0 to 1.0) */
-    public static final double ROTATE_POWER = 0.6;
+    public static final double ROTATE_POWER = 0.3;
 
     /** Left launcher motor power during shooting */
     public static final double LEFT_LAUNCH_POWER = 0.82;
