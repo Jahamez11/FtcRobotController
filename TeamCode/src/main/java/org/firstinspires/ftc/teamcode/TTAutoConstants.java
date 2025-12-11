@@ -17,14 +17,14 @@ public class TTAutoConstants {
     public static final double DRIVE_TO_COLLECT = -16.0; // this may need to be negative
 
     /** Strafe distance for first ball group (inches) */
-    public static final double STRAFE_GROUP_1 = -12;
+    public static final double STRAFE_GROUP_1 = -19;
 
     /** Strafe distance for second ball group (inches) */
-    public static final double STRAFE_GROUP_2 = -3.4;
+    public static final double STRAFE_GROUP_2 = -43.5;
 
 
     /** Strafe distance for third ball group (inches) */
-    public static final double STRAFE_GROUP_3 = -60.5;
+    public static final double STRAFE_GROUP_3 = 50;
 
     /** Array of all strafe distances for easy iteration */
     public static final double[] STRAFE_DISTANCES = {
@@ -33,9 +33,9 @@ public class TTAutoConstants {
             STRAFE_GROUP_3
     };
     public static final double STRAFE_LEAVE = -3;
-    public static final double COLLECT_GROUP_1 = -16;
-    public static final double COLLECT_GROUP_2 = -16;
-    public static final double COLLECT_GROUP_3 = -16;
+    public static final double COLLECT_GROUP_1 = -26;
+    public static final double COLLECT_GROUP_2 = -35;
+    public static final double COLLECT_GROUP_3 = -40;
     public static final double[] COLLECT_DISTANCES = {
             COLLECT_GROUP_1,
             COLLECT_GROUP_2,
@@ -47,21 +47,21 @@ public class TTAutoConstants {
     public static final double START_HEADING = 45.0;
 
     /** Rotation angle before collecting balls - counterclockwise (degrees) */
-    public static final double ROTATE_TO_COLLECT = 131;//121.0;
+    public static final double ROTATE_TO_COLLECT = 135;//121.0;
     //public static final double ROTATE_TO_COLLECT2 = 132.0;
 
 
     /** Rotation angle after collecting balls - clockwise (degrees) */
-    public static final double ROTATE_TO_SHOOT = -131;//-135.0;
-    public static final double ROTATE_TO_SHOOT2 = -143.0;
+    public static final double ROTATE_TO_SHOOT = -135;//-135.0;
+    public static final double ROTATE_TO_SHOOT2 = -145.0;
 
     public static final double ROTATE_TO_LEAVE = -45.0;
 
     // ==================== MOTOR POWERS ====================
 
     /** Drive motor power during autonomous movements (0.0 to 1.0) */
-    public static final double DRIVE_POWER = 1.0;//0.25;
-    public static final double DRIVE_POWER_COLLECT = 1.0;
+    public static final double DRIVE_POWER = 1.0;
+    public static final double DRIVE_POWER_COLLECT = 0.5;
 
     /** Rotation power during turns (0.0 to 1.0) */
     public static final double ROTATE_POWER = 1.0;
@@ -92,7 +92,7 @@ public class TTAutoConstants {
     public static final long LAUNCHER_SPINUP_TIME = 200;
 
     /** Time to run shooting sequence (milliseconds) */
-    public static final long SHOOTING_DURATION1 = 1400;
+    public static final long SHOOTING_DURATION1 = 1600;
     public static final long SHOOTING_DURATION2 = 300;
 
     // ==================== TOLERANCE VALUES ====================

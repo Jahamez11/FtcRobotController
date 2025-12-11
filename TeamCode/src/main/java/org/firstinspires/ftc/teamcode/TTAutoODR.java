@@ -98,9 +98,9 @@ public class TTAutoODR extends LinearOpMode {
       pickupBalls();
       driveAndCollect(TTAutoConstants.COLLECT_GROUP_2, TTAutoConstants.DRIVE_POWER_COLLECT);
       // Step 6: Back up to shooting lane
-      odometry.drive(-TTAutoConstants.COLLECT_GROUP_2, TTAutoConstants.DRIVE_POWER, 0);
+      odometry.drive(-TTAutoConstants.COLLECT_GROUP_3, TTAutoConstants.DRIVE_POWER, 0);
       // Step 7: Strafe right (return to shooting position)
-      odometry.strafe(TTAutoConstants.STRAFE_GROUP_2, TTAutoConstants.DRIVE_POWER, 0);
+      odometry.strafe(-TTAutoConstants.STRAFE_GROUP_3, TTAutoConstants.DRIVE_POWER, 0);
       stoppickupBalls();
       // Step 8: Rotate clockwise to shooting angle
       ballDrop();
