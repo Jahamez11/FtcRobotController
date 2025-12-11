@@ -24,7 +24,7 @@ public class TTAutoConstants {
 
 
     /** Strafe distance for third ball group (inches) */
-    public static final double STRAFE_GROUP_3 = 50;
+    public static final double STRAFE_GROUP_3 = 53;
 
     /** Array of all strafe distances for easy iteration */
     public static final double[] STRAFE_DISTANCES = {
@@ -35,7 +35,7 @@ public class TTAutoConstants {
     public static final double STRAFE_LEAVE = -3;
     public static final double COLLECT_GROUP_1 = -26;
     public static final double COLLECT_GROUP_2 = -35;
-    public static final double COLLECT_GROUP_3 = -40;
+    public static final double COLLECT_GROUP_3 = -45;
     public static final double[] COLLECT_DISTANCES = {
             COLLECT_GROUP_1,
             COLLECT_GROUP_2,
@@ -67,10 +67,10 @@ public class TTAutoConstants {
     public static final double ROTATE_POWER = 1.0;
 
     /** Left launcher motor power during shooting */
-    public static final double LEFT_LAUNCH_POWER = 0.82;
+    public static final double LEFT_LAUNCH_POWER = 0.83;
 
     /** Right launcher motor power during shooting (opposite direction) */
-    public static final double RIGHT_LAUNCH_POWER = -0.82;
+    public static final double RIGHT_LAUNCH_POWER = -0.83;
 
     /** Index motor power during shooting (feeding balls) */
     public static final double INDEX_SHOOT_POWER = -0.9;
