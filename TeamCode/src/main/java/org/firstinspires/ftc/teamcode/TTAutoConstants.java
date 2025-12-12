@@ -12,19 +12,24 @@ public class TTAutoConstants {
 
     /** Distance to back up from starting position to shooting position (inches) */
     public static final double BACKUP_TO_SHOOT = 32.0;
-
+    public static final double BACKUP_TO_SHOOT2 = 35.0;
     /** Distance to drive forward to collect balls (inches) */
     public static final double DRIVE_TO_COLLECT = -16.0; // this may need to be negative
 
     /** Strafe distance for first ball group (inches) */
-    public static final double STRAFE_GROUP_1 = -19;
+    public static final double STRAFE_GROUP_1 = -19; //first strafe for red
 
     /** Strafe distance for second ball group (inches) */
-    public static final double STRAFE_GROUP_2 = -43.5;
+    public static final double STRAFE_GROUP_2 = -43.5; //second strafe for red
+
 
 
     /** Strafe distance for third ball group (inches) */
-    public static final double STRAFE_GROUP_3 = 53;
+    public static final double STRAFE_GROUP_3 = 53; //going to final shooting postition
+    public static final double STRAFE_GROUP_4 = -17.5; //second strafe for blue
+
+    /** Strafe distance for third ball group (inches) */
+    public static final double STRAFE_GROUP_5 = -41.5; //second strafe blue
 
     /** Array of all strafe distances for easy iteration */
     public static final double[] STRAFE_DISTANCES = {
@@ -33,9 +38,10 @@ public class TTAutoConstants {
             STRAFE_GROUP_3
     };
     public static final double STRAFE_LEAVE = -3;
-    public static final double COLLECT_GROUP_1 = -26;
-    public static final double COLLECT_GROUP_2 = -35;
-    public static final double COLLECT_GROUP_3 = -45;
+    public static final double COLLECT_GROUP_1 = -26.5; //first distance going to pick up balls
+    public static final double COLLECT_GROUP_2 = -37; //second distance for red to pick up balls
+    public static final double COLLECT_GROUP_3 = -34.5; //second distance for blue to pick up balls
+    public static final double COLLECT_GROUP_4 = -45; //second leave distance
     public static final double[] COLLECT_DISTANCES = {
             COLLECT_GROUP_1,
             COLLECT_GROUP_2,
